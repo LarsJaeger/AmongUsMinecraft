@@ -1,4 +1,4 @@
-package net.wargearworld.missileWarsMain.main;
+package one.jgr.amongUs.main;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -13,10 +13,10 @@ public class DataSource {
 	private static HikariDataSource ds;
 
 	public DataSource() {
-		String database = net.wargearworld.missileWarsMain.main.Main.database;
-		String host = net.wargearworld.missileWarsMain.main.Main.host;
-		String user = net.wargearworld.missileWarsMain.main.Main.user;
-		String passwd = net.wargearworld.missileWarsMain.main.Main.passwd;
+		String database = Main.database;
+		String host = Main.host;
+		String user = Main.user;
+		String passwd = Main.passwd;
 		String connectionCommand = "jdbc:mysql://" + host + "/" + database;
 		config.setJdbcUrl(connectionCommand);
 		config.setUsername(user);

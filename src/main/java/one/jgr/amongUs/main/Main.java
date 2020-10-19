@@ -1,9 +1,12 @@
-package net.wargearworld.missileWarsMain.main;
+package one.jgr.amongUs.main;
 
-import net.wargearworld.missileWarsMain.commands.MissileWars;
-import net.wargearworld.missileWarsMain.commands.MissileWarsTabCompletion;
-import net.wargearworld.missileWarsMain.listeners.PlayerClicks;
-import net.wargearworld.missileWarsMain.listeners.PlayerJoins;
+import one.jgr.amongUs.listeners.PlayerJoins;
+import one.jgr.amongUs.listeners.PlayerClicks;
+import one.jgr.amongUs.commands.AmongUs;
+import one.jgr.amongUs.commands.AmongUsTabCompletion;
+import one.jgr.amongUs.listeners.PlayerJoins;
+import one.jgr.amongUs.listeners.TaskEvents;
+import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -22,7 +25,6 @@ public class Main extends JavaPlugin {
 	// config send
 	public static final String langPack_de = "de_german.properties";
 	public static final String langPack_en = "en_english.properties";
-	public static String activeFightServerPath = "";
 	public static String commandcolor = "§2";
 	public static String argumentcolor = "§a";
 	public static String textcolor = "§7";
@@ -36,6 +38,8 @@ public class Main extends JavaPlugin {
 	public static String user;
 	public static String passwd;
 	public FileConfiguration config = null;
+	//game data
+	public static ArrayList<Task> activeTasks = new ArrayList<Task>();
 
 	public static Main getMain() {
 		return plugin;
@@ -49,8 +53,8 @@ public class Main extends JavaPlugin {
 		if (enabled == true) {
 			register_Listener();
 			new DataSource();
-			getCommand("mw").setExecutor(new MissileWars());
-			getCommand("mw").setTabCompleter(new MissileWarsTabCompletion());
+			getCommand("amongus").setExecutor(new AmongUs());
+			getCommand("amongus").setTabCompleter(new AmongUsTabCompletion());
 
 			System.out.println("[MissileWars] finished enabling");
 		} else {
@@ -82,6 +86,7 @@ public class Main extends JavaPlugin {
 
 		pm.registerEvents(new PlayerJoins(), this);
 		pm.registerEvents(new PlayerClicks(), this);
+		pm.registerEvents(new TaskEvents(), this);
 /*		PluginManager pm = Bukkit.getPluginManager();
 
 		pm.registerEvents(new PlayerDeath(), this);

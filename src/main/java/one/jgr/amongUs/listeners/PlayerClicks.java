@@ -1,7 +1,7 @@
-package net.wargearworld.missileWarsMain.listeners;
+package one.jgr.amongUs.listeners;
 
-import net.wargearworld.missileWarsMain.main.CustomItem;
-import net.wargearworld.missileWarsMain.main.Main;
+import one.jgr.amongUs.main.Main;
+import one.jgr.one.main.CustomItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

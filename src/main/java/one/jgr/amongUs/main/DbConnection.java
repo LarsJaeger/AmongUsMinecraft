@@ -1,4 +1,4 @@
-package net.wargearworld.missileWarsMain.main;
+package one.jgr.amongUs.main;
 
 import java.sql.*;
 
@@ -14,8 +14,8 @@ public class DbConnection {
                     }
                 }
                 Class.forName("com.mysql.jdbc.Driver").getConstructor().newInstance();
-                String connectionCommand = "jdbc:mysql://" + net.wargearworld.missileWarsMain.main.Main.host + "/" + net.wargearworld.missileWarsMain.main.Main.database + "?user=" + net.wargearworld.missileWarsMain.main.Main.user + "&password="
-                        + net.wargearworld.missileWarsMain.main.Main.passwd;
+                String connectionCommand = "jdbc:mysql://" + Main.host + "/" + Main.database + "?user=" + Main.user + "&password="
+                        + Main.passwd;
                 connection = DriverManager.getConnection(connectionCommand);
 
             } catch (SQLException ex) {

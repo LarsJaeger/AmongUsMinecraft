@@ -1,5 +1,6 @@
-package net.wargearworld.missileWarsMain.main;
+package one.jgr.one.main;
 
+import one.jgr.amongUs.main.Main;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
