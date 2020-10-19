@@ -1,6 +1,11 @@
 package one.jgr.amongUs.tasks;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.inventory.Inventory;
 
 public class Task {
     public static Player p;
@@ -17,5 +22,14 @@ public class Task {
     protected void cancelTask() {
         //TODO cancelTask
         return;
+    }
+    public void inventoryClickEvent(InventoryClickEvent event) {
+        return;
+    }
+    public void inventoryDragEvent(InventoryDragEvent event) {
+        return;
+    }
+    public void inventoryCloseEvent(InventoryCloseEvent event) {
+
     }
 }
