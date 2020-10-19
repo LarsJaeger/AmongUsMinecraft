@@ -13,6 +13,7 @@ public class Task {
     public Task (Player player) {
         p = player;
         Main.activeTasks.add(this);
+        this.startTask();
     }
     public void startTask() {
         return;
