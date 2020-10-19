@@ -1,6 +1,7 @@
 package one.jgr.amongUs.commands;
 
 import one.jgr.amongUs.main.Main;
+import one.jgr.amongUs.tasks.Cables;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,6 +14,9 @@ public class AmongUs implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String arg, String[] args) {
         if (!sender.equals(Bukkit.getConsoleSender())) {
             p = (Player) sender;
+            if (args[0] == "openCables") {
+                new Cables(p);
+            }
         } else {
             p = null;
         }
