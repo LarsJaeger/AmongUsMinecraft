@@ -1,0 +1,7 @@
+enabled: true
+database:
+  enabled: true
+  name: pluginData_test #database name
+  host: localhost #host
+  username:
+  password:

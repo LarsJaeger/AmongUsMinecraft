@@ -1,0 +1,11 @@
+name: AmongUs
+version: 0.1
+main: net.wargearworld.missileWarsMain.main.Main
+authors: [Lars Jaeger, JAB_1305]
+depend: [WorldEdit,WorldGuard]
+description: AmongUs for Minecraft
+api-version: 1.15
+commands:
+  amongus:
+    description: controls the game
+    aliases: [au]
