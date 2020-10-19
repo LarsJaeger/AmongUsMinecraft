@@ -16,7 +16,7 @@ public class Countdown {
 
             @Override
             public void run() {
-                System.out.println(message);
+                Main.sendAll(message);
             }
         }, 20, 20);
     }
