@@ -15,7 +15,7 @@ public class Cables extends Task{
     }
 
     public ChestGUI createInv() {
-        ChestGUI cable_gui = new ChestGUI(45, "Test");
+        ChestGUI cable_gui = new ChestGUI(45, "Cables");
         return cable_gui;
     }
 }
