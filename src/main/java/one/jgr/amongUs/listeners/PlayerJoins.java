@@ -2,6 +2,7 @@ package one.jgr.amongUs.listeners;
 
 import one.jgr.amongUs.main.Main;
 import one.jgr.one.main.CustomItem;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -29,13 +30,13 @@ public class PlayerJoins implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
-//		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getMain(), new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stoplag -c");
-//			}
-//		}, 20);
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), new Runnable() {
+
+			@Override
+			public void run() {
+			    //TODO Startcountdown
+			}
+		}, 20, 20);
 
         Player p = event.getPlayer();
         p.setPlayerListName(p.getDisplayName());
