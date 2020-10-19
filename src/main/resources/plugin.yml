@@ -1,6 +1,6 @@
 name: AmongUs
 version: 0.1
-main: one.jgr.AmongUs.main.Main
+main: one.jgr.amongUs.main.Main
 authors: [Lars Jaeger, JAB_1305]
 depend: [WorldEdit,WorldGuard]
 description: AmongUs for Minecraft
