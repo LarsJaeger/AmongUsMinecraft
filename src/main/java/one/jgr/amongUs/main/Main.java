@@ -22,6 +22,7 @@ public class Main extends JavaPlugin {
 
 	public static Main plugin;
 	public static boolean enabled = true;
+	public static String fallbackLanguageCode = "en";
 	// config send
 	public static final String langPack_de = "de_german.properties";
 	public static final String langPack_en = "en_english.properties";
@@ -70,6 +71,7 @@ public class Main extends JavaPlugin {
 		this.reloadConfig();
 		config = this.getConfig();
 		enabled = config.getBoolean("enabled");
+		fallbackLanguageCode = config.getString("fallbackLanguage");
 		dbenabled = config.getBoolean("database.enabled");
 		database = config.getString("database.name");
 		host = config.getString("database.host");
@@ -177,6 +179,9 @@ public class Main extends JavaPlugin {
 	}
 
 	public static String getLanguage(Player p) {
+		if(!dbenabled) {
+			return fallbackLanguageCode;
+		}
 		// create HashMap of player and according language to reduce traffic
 		Statement stmt = null;
 		ResultSet result = null;

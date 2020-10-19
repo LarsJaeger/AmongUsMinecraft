@@ -1,7 +1,8 @@
 enabled: true
+fallbackLanguage: en # fallback language in case database is disabled
 database:
   enabled: true
-  name: pluginData_test #database name
-  host: localhost #host
+  name: pluginData_test # database name
+  host: localhost # host
   username:
   password:
