@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AmongUsMinecraft" />
+        <module name="AmongUs" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AmongUsMinecraft" target="11" />
+      <module name="AmongUs" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
