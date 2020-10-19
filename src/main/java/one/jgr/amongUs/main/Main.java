@@ -50,9 +50,11 @@ public class Main extends JavaPlugin {
 		plugin = this;
 		this.saveDefaultConfig();
 		configure();
-		if (enabled == true) {
+		if (enabled) {
 			register_Listener();
-			new DataSource();
+			if (dbenabled) {
+				new DataSource();
+			}
 			getCommand("amongus").setExecutor(new AmongUs());
 			getCommand("amongus").setTabCompleter(new AmongUsTabCompletion());
 
