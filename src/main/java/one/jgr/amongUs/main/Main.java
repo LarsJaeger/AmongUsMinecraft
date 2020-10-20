@@ -1,6 +1,7 @@
 package one.jgr.amongUs.main;
 
 import net.wargearworld.GUI_API.GUI_API;
+import one.jgr.amongUs.game.Color;
 import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.commands.AmongUs;
