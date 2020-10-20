@@ -2,7 +2,7 @@ package one.jgr.amongUs.main;
 
 import org.bukkit.Bukkit;
 
-public class Countdown {
+public abstract class Countdown {
     private int t; //current time
     private int dt; //time to pass between actions
     private int seconds; // time
