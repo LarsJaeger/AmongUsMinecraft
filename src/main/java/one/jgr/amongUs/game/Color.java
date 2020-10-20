@@ -1,10 +1,13 @@
 package one.jgr.amongUs.game;
 
+import one.jgr.amongUs.main.Main;
 import org.apache.commons.codec.binary.Hex;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+
+import java.util.HashMap;
 
 public enum Color {
     RED, //("color_red", org.bukkit.Color.fromRGB(197, 17, 17)),
@@ -20,44 +23,13 @@ public enum Color {
     CYAN, //("color_cyan", org.bukkit.Color.fromRGB(56,254,220)),
     LIME; //("color_lime", org.bukkit.Color.fromRGB(80,239,57));
 
+    private Player colorPlayer;
+
     public void setPlayer(Player p) {
-        switch (this){
-            case RED:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(197, 17, 17));
-                break;
-            case BLUE:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(19, 46, 209));
-                break;
-            case GREEN:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(17, 127,45));
-                break;
-            case PINK:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(237,84,186));
-                break;
-            case ORANGE:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(239,125,13));
-                break;
-            case YELLOW:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(245,245,87));
-                break;
-            case BLACK:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(63,71,78));
-                break;
-            case WHITE:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(214,224,240));
-                break;
-            case PURPLE:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(107,47,187));
-                break;
-            case BROWN:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(113,73,30));
-                break;
-            case CYAN:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(56,254,220));
-                break;
-            case LIME:
-                setColoredArmor(p, org.bukkit.Color.fromRGB(80,239,57));
-                break;
+        if(this.colorPlayer == null) {
+            setColoredArmor(p, this.getColor());
+        } else {
+            Main.send(p,"color_alreadyTaken", Main.getString(p, this.getName()), this.colorPlayer.getName());
         }
     }
     public String getName() {
@@ -89,6 +61,35 @@ public enum Color {
         }
         return null;
     }
+    public org.bukkit.Color getColor() {
+        switch (this){
+            case RED:
+                return org.bukkit.Color.fromRGB(197, 17, 17);
+            case BLUE:
+                return org.bukkit.Color.fromRGB(19, 46, 209);
+            case GREEN:
+                return org.bukkit.Color.fromRGB(17, 127,45);
+            case PINK:
+                return org.bukkit.Color.fromRGB(237,84,186);
+            case ORANGE:
+                return org.bukkit.Color.fromRGB(239,125,13);
+            case YELLOW:
+                return org.bukkit.Color.fromRGB(245,245,87);
+            case BLACK:
+                return org.bukkit.Color.fromRGB(63,71,78);
+            case WHITE:
+                return org.bukkit.Color.fromRGB(214,224,240);
+            case PURPLE:
+                return org.bukkit.Color.fromRGB(107,47,187);
+            case BROWN:
+                return org.bukkit.Color.fromRGB(113,73,30);
+            case CYAN:
+                return org.bukkit.Color.fromRGB(56,254,220);
+            case LIME:
+                return org.bukkit.Color.fromRGB(80,239,57);
+        }
+        return null;
+    }
     public void setColoredArmor(Player p, org.bukkit.Color c) {
         // helmet
         ItemStack helmet = new ItemStack(Material.LEATHER_HELMET, 1);
@@ -114,5 +115,9 @@ public enum Color {
         bootsMeta.setColor(c);
         boots.setItemMeta(bootsMeta);
         p.getEquipment().setBoots(boots);
+    }
+    public static Color getColor(Player p) {
+
+        return null;
     }
 }
