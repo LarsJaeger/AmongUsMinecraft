@@ -55,8 +55,6 @@ public class Main extends JavaPlugin {
 	public static int commonTasks; // tasks that everyone has to fulfill
 	public static int shortTasks; // single step tasks
 	public static int longTasks; // multi step tasks
-	//game data
-	public static ArrayList<Task> activeTasks = new ArrayList<>();
 
 	public static Main getMain() {
 		return plugin;
