@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
         public enum CustomItem {
+            //TODO overhaul
             CHALLENGE,
             INVITE,
             STATS;
