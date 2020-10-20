@@ -1,7 +1,7 @@
 package one.jgr.amongUs.listeners;
 
 import one.jgr.amongUs.main.Main;
-import one.jgr.one.main.CustomItem;
+import one.jgr.amongUs.game.CustomItem;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -10,10 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
 
 public class PlayerJoins implements Listener {
     static Material m_teleporter = Material.NETHER_STAR;
@@ -40,7 +36,7 @@ public class PlayerJoins implements Listener {
 
         Player p = event.getPlayer();
         p.setPlayerListName(p.getDisplayName());
-        p.setGameMode(GameMode.SURVIVAL);
+        p.setGameMode(GameMode.ADVENTURE);
         createInventory(p);
         p.setExp(0);
     }

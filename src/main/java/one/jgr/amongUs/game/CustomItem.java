@@ -1,4 +1,4 @@
-package one.jgr.amongUs.main;
+package one.jgr.amongUs.game;
 
 import one.jgr.amongUs.main.Main;
 import org.bukkit.Material;
@@ -26,8 +26,9 @@ import java.util.ArrayList;
             public static ItemStack createItemStack(int amount, Material customMaterial, String customItemDisplayName, String customItemLore) {
                 ItemStack currentItemStack = new ItemStack(customMaterial);
                 ItemMeta currentItemMeta = currentItemStack.getItemMeta();
+                assert currentItemMeta != null;
                 currentItemMeta.setDisplayName(customItemDisplayName);
-                ArrayList<String> lore = new ArrayList<String>();
+                ArrayList<String> lore = new ArrayList<>();
                 lore.add(customItemLore);
                 currentItemMeta.setLore(lore);
                 currentItemStack.setItemMeta(currentItemMeta);

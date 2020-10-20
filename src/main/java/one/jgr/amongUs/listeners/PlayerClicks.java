@@ -1,7 +1,7 @@
 package one.jgr.amongUs.listeners;
 
 import one.jgr.amongUs.main.Main;
-import one.jgr.one.main.CustomItem;
+import one.jgr.amongUs.game.CustomItem;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
