@@ -5,7 +5,6 @@ import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.commands.AmongUs;
 import one.jgr.amongUs.commands.AmongUsTabCompletion;
-import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.TaskEvents;
 import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
@@ -40,8 +39,23 @@ public class Main extends JavaPlugin {
 	public static String user;
 	public static String passwd;
 	public FileConfiguration config = null;
+	//game config
+	public static int minPlayers; // minimum number of players to start a game
+	public static int maxPlayers; // maximum number of players to start a game
+	public static int impostors; // number of impostors
+	public static int emergencyMeetings; // number of emergency meetings per person
+	public static int emergencyCooldown; // cooldown time of the emergency meeting after start or meeting
+	public static int discussionTime; // time to discuss in meetings
+	public static int votingTime; // time to vote in meetings
+	public static int playerSpeed; // possible values: 0;1;2
+	public static int crewmateVision; // when lights are off
+	public static int impostorVision; // when lights are off
+	public static int killCooldown; // cooldown between kills
+	public static int commonTasks; // tasks that everyone has to fulfill
+	public static int shortTasks; // single step tasks
+	public static int longTasks; // multi step tasks
 	//game data
-	public static ArrayList<Task> activeTasks = new ArrayList<Task>();
+	public static ArrayList<Task> activeTasks = new ArrayList<>();
 
 	public static Main getMain() {
 		return plugin;
@@ -76,6 +90,7 @@ public class Main extends JavaPlugin {
 		config = this.getConfig();
 		enabled = config.getBoolean("enabled");
 		fallbackLanguageCode = config.getString("fallbackLanguage");
+		// database
 		dbenabled = config.getBoolean("database.enabled");
 		database = config.getString("database.name");
 		host = config.getString("database.host");
@@ -84,7 +99,21 @@ public class Main extends JavaPlugin {
 		if (enabled && dbenabled) {
 			db.newConnection();
 		}
-		return;
+		// game
+		minPlayers = config.getInt("game.minPlayers");
+		maxPlayers = config.getInt("game.maxPlayers");
+		impostors = config.getInt("game.impostors");
+		emergencyMeetings = config.getInt("game.emergencyMeetings");
+		emergencyCooldown = config.getInt("game.emergencyCooldown");
+		discussionTime = config.getInt("game.discussionTime");
+		votingTime = config.getInt("game.votingTime");
+		playerSpeed = config.getInt("game.playerSpeed");
+		crewmateVision = config.getInt("game.crewmateVision");
+		impostorVision = config.getInt("game.impostorVision");
+		killCooldown = config.getInt("game.killCooldown");
+		commonTasks = config.getInt("game.commonTasks");
+		shortTasks = config.getInt("game.shortTasks");
+		longTasks = config.getInt("game.longTasks");
 	}
 
 	public void register_Listener() {
@@ -108,7 +137,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new WaterRemover(), this);*/
 	}
 	public static void send(Player pe, String... args) {
-		String message = "";
+		String message;
 		Properties languagePack = new Properties();
 
 		// if sender is console
