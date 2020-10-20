@@ -15,6 +15,7 @@
         <version.luckperms>5.0</version.luckperms>
         <version.worldguard>7.0.2</version.worldguard>
         <version.gui-api>1.4.0-SNAPSHOT</version.gui-api>
+        <version.StringGetter>1.0</version.StringGetter>
 
         <!-- Plugin Versions -->
         <version.maven-shade-plugin>3.2.1</version.maven-shade-plugin>
@@ -50,6 +51,12 @@
             <groupId>net.wargearworld</groupId>
             <artifactId>GUI-API</artifactId>
             <version>${version.gui-api}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.wargearworld</groupId>
+            <artifactId>StringGetter</artifactId>
+            <version>${version.StringGetter}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
