@@ -12,15 +12,13 @@ public class AmongUs implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String arg, String[] args) {
-        if (!sender.equals(Bukkit.getConsoleSender())) {
+        if (sender instanceof Player) {
             p = (Player) sender;
-            if (args[0] == "openCables") {
-                new Cables(p);
-            }
+            new Cables(p);
         } else {
             p = null;
         }
-        return true ;
+        return true;
     }
 
     public static boolean hasPermission(Player hasPermission_player, boolean message, String... permissions) {

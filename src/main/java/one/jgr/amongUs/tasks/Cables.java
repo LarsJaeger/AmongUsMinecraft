@@ -14,17 +14,20 @@ public class Cables extends Task{
     }
 
     public void startTask() {
-        createInv().open(super.p);
+        ChestGUI cables = createInv();
+        System.out.println(cables);
+        cables.open(p);
     }
 
     public ChestGUI createInv() {
         ChestGUI cable_gui = new ChestGUI(36, "Cables");
         Item item = new DefaultItem(Material.BLACK_STAINED_GLASS_PANE, "Test");
-        Integer i = 0;
+        /*Integer i = 0;
         for(i = 0; i < 4; i++) {
             cable_gui.setItem(i*9, item);
             cable_gui.setItem((i+1)*8, item);
-        }
+        }*/
+        cable_gui.addItem(item);
         return cable_gui;
     }
 }

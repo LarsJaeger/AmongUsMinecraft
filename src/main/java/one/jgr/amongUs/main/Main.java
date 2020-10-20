@@ -1,5 +1,6 @@
 package one.jgr.amongUs.main;
 
+import net.wargearworld.GUI_API.GUI_API;
 import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.commands.AmongUs;
@@ -53,15 +54,16 @@ public class Main extends JavaPlugin {
 		configure();
 		if (enabled) {
 			register_Listener();
+			new GUI_API(this,MessageHandler.getInstance());
 			if (dbenabled) {
 				new DataSource();
 			}
 			getCommand("amongus").setExecutor(new AmongUs());
 			getCommand("amongus").setTabCompleter(new AmongUsTabCompletion());
 
-			System.out.println("[MissileWars] finished enabling");
+			System.out.println("[AmongUs] finished enabling");
 		} else {
-			System.out.println("[MissileWars] finished, not enabled (see config.yml)");
+			System.out.println("[AmongUs] finished, not enabled (see config.yml)");
 		}
 	}
 
