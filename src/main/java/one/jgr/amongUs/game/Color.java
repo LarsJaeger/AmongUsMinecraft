@@ -32,6 +32,9 @@ public enum Color {
             Main.send(p,"color_alreadyTaken", Main.getString(p, this.getName()), this.colorPlayer.getName());
         }
     }
+    public Player getPlayer() {
+        return colorPlayer;
+    }
     public String getName() {
         switch (this) {
             case RED:
@@ -90,7 +93,7 @@ public enum Color {
         }
         return null;
     }
-    public void setColoredArmor(Player p, org.bukkit.Color c) {
+    private void setColoredArmor(Player p, org.bukkit.Color c) {
         // helmet
         ItemStack helmet = new ItemStack(Material.LEATHER_HELMET, 1);
         LeatherArmorMeta helmetMeta = (LeatherArmorMeta)helmet.getItemMeta();
@@ -117,7 +120,9 @@ public enum Color {
         p.getEquipment().setBoots(boots);
     }
     public static Color getColor(Player p) {
-
+        for (Color c: Color.values()) {
+            if(c.getPlayer().equals(p)) return c;
+        }
         return null;
     }
 }
