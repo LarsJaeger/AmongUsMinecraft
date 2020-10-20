@@ -13,10 +13,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class TaskEvents implements Listener {
     // rerouting Events to the right task
     @EventHandler(priority = EventPriority.NORMAL)
-    public void inventoryClose(InventoryClickEvent event) {
+    public void inventoryClick(InventoryClickEvent event) {
         for(Task t: Main.activeTasks) {
             if(t.p.equals(event.getWhoClicked())) {
-                inventoryClose(event);
+                t.inventoryClickEvent(event);
             }
         }
     }
@@ -24,15 +24,15 @@ public class TaskEvents implements Listener {
     public void inventoryClose(InventoryCloseEvent event) {
         for(Task t: Main.activeTasks) {
             if(t.p.equals(event.getPlayer())) {
-                inventoryClose(event);
+                t.inventoryCloseEvent(event);
             }
         }
     }
     @EventHandler(priority = EventPriority.NORMAL)
-    public void inventoryClose(InventoryDragEvent event) {
+    public void inventoryDrag(InventoryDragEvent event) {
         for(Task t: Main.activeTasks) {
             if(t.p.equals(event.getWhoClicked())) {
-                inventoryClose(event);
+                t.inventoryDragEvent(event);
             }
         }
     }
