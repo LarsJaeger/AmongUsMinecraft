@@ -54,7 +54,7 @@ public class Main extends JavaPlugin {
 		configure();
 		if (enabled) {
 			register_Listener();
-			new GUI_API(this,MessageHandler.getInstance());
+			new GUI_API(this,null);
 			if (dbenabled) {
 				new DataSource();
 			}
@@ -93,8 +93,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerJoins(), this);
 		pm.registerEvents(new PlayerClicks(), this);
 		pm.registerEvents(new TaskEvents(), this);
-/*		PluginManager pm = Bukkit.getPluginManager();
-
+/*		TODO
 		pm.registerEvents(new PlayerDeath(), this);
 		pm.registerEvents(new PlayerRespawn(), this);
 		pm.registerEvents(new PlayerJoins(), this);
