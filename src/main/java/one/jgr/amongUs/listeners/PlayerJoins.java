@@ -1,5 +1,6 @@
 package one.jgr.amongUs.listeners;
 
+import one.jgr.amongUs.game.Game;
 import one.jgr.amongUs.main.Main;
 import one.jgr.amongUs.game.CustomItem;
 import org.bukkit.Bukkit;
@@ -26,18 +27,10 @@ public class PlayerJoins implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), new Runnable() {
-
-			@Override
-			public void run() {
-			    //TODO Startcountdown
-			}
-		}, 20, 20);
-
         Player p = event.getPlayer();
         p.setPlayerListName(p.getDisplayName());
-        p.setGameMode(GameMode.ADVENTURE);
-        createInventory(p);
+        p.setGameMode(GameMode.SPECTATOR);
         p.setExp(0);
+        Game.addPlayer(p);
     }
 }
