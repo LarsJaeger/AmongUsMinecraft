@@ -1,5 +1,6 @@
 package one.jgr.amongUs.tasks;
 
+import one.jgr.amongUs.game.Game;
 import one.jgr.amongUs.main.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -12,7 +13,7 @@ public class Task {
     public static Player p;
     public Task (Player player) {
         p = player;
-        Main.activeTasks.add(this);
+        Game.activeTasks.add(this);
         this.startTask();
     }
     public void startTask() {
