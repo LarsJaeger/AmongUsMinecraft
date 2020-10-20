@@ -1,5 +1,6 @@
 package one.jgr.amongUs.listeners;
 
+import one.jgr.amongUs.game.Game;
 import one.jgr.amongUs.main.Main;
 import one.jgr.amongUs.tasks.Task;
 import org.bukkit.event.EventHandler;
@@ -14,7 +15,7 @@ public class TaskEvents implements Listener {
     // rerouting Events to the right task
     @EventHandler(priority = EventPriority.NORMAL)
     public void inventoryClick(InventoryClickEvent event) {
-        for(Task t: Main.activeTasks) {
+        for(Task t: Game.activeTasks) {
             if(t.p.equals(event.getWhoClicked())) {
                 t.inventoryClickEvent(event);
             }
@@ -22,7 +23,7 @@ public class TaskEvents implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void inventoryClose(InventoryCloseEvent event) {
-        for(Task t: Main.activeTasks) {
+        for(Task t: Game.activeTasks) {
             if(t.p.equals(event.getPlayer())) {
                 t.inventoryCloseEvent(event);
             }
@@ -30,7 +31,7 @@ public class TaskEvents implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void inventoryDrag(InventoryDragEvent event) {
-        for(Task t: Main.activeTasks) {
+        for(Task t: Game.activeTasks) {
             if(t.p.equals(event.getWhoClicked())) {
                 t.inventoryDragEvent(event);
             }
