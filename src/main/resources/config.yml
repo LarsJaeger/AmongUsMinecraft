@@ -6,3 +6,18 @@ database:
   host: localhost # host
   username:
   password:
+game:
+  minPlayers: 6 # minimum number of players to start a game
+  maxPlayers: 10 # maximum number of players to start a game
+  impostors: 2 # number of impostors
+  emergencyMeetings: 1 # number of emergency meetings per person
+  emergencyCooldown: 0 # cooldown time of the emergency meeting after start or meeting
+  discussionTime: 15 # time to discuss in meetings
+  votingTime: 120 # time to vote in meetings
+  playerSpeed: 1 # possible values: 0;1;2
+  crewmateVision: 1 # when lights are off
+  impostorVision: 1 # when lights are off
+  killCooldown: 45 # cooldown between kills
+  commonTasks: 1 # tasks that everyone has to fulfill
+  shortTasks: 1 # single step tasks
+  longTasks: 2 # multi step tasks
