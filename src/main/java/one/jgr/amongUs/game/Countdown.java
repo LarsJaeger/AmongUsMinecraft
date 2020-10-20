@@ -1,5 +1,6 @@
-package one.jgr.amongUs.main;
+package one.jgr.amongUs.game;
 
+import one.jgr.amongUs.main.Main;
 import org.bukkit.Bukkit;
 
 public abstract class Countdown {
