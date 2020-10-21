@@ -2,12 +2,12 @@ package one.jgr.amongUs.commands;
 
 import one.jgr.amongUs.game.PlayerColor;
 import one.jgr.amongUs.main.Main;
-import one.jgr.amongUs.tasks.Cables;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 public class AmongUs implements CommandExecutor {
     public Player p;
 
@@ -21,7 +21,7 @@ public class AmongUs implements CommandExecutor {
         switch (args[0]) {
             //TODO TabComplete
             case "color":
-                PlayerColor.getPlayerColor(args[2]).setPlayer(p);
+                PlayerColor.getPlayerColor(args[1]).setPlayer(p);
         }
         return true;
     }
