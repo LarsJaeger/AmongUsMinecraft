@@ -1,13 +1,10 @@
 package one.jgr.amongUs.game;
 
 import one.jgr.amongUs.main.Main;
-import org.apache.commons.codec.binary.Hex;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-
-import java.util.HashMap;
 
 public enum PlayerColor {
     RED, //("color_red", org.bukkit.Color.fromRGB(197, 17, 17)),
@@ -27,9 +24,13 @@ public enum PlayerColor {
 
     public void setPlayer(Player p) {
         if(this.colorPlayer == null) {
+            if(this.getPlayerColor(p) != null) {
+                this.getPlayerColor(p).setPlayer(null); // resets the previous color of player p so it is no longer taken
+            }
             setColoredArmor(p, this.getColor());
             this.colorPlayer = p;
             Main.send(p, "color_new", Main.getString(p, this.getName()));
+
         } else {
             Main.send(p,"color_alreadyTaken", Main.getString(p, this.getName()), this.colorPlayer.getName());
         }
@@ -123,7 +124,7 @@ public enum PlayerColor {
     }
     public static PlayerColor getPlayerColor(Player p) {
         for (PlayerColor c: PlayerColor.values()) {
-            if(c.getPlayer().equals(p)) return c;
+            if(c.getPlayer() != null && c.getPlayer().equals(p)) return c;
         }
         return null;
     }

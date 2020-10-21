@@ -1,7 +1,7 @@
 package one.jgr.amongUs.main;
 
 import net.wargearworld.GUI_API.GUI_API;
-import one.jgr.amongUs.game.Color;
+import one.jgr.amongUs.game.PlayerColor;
 import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.commands.AmongUs;
@@ -67,7 +67,7 @@ public class Main extends JavaPlugin {
 		configure();
 		if (enabled) {
 			register_Listener();
-			new GUI_API(this,null);
+			// TODO fix new GUI_API(this, null);
 			if (dbenabled) {
 				new DataSource();
 			}
