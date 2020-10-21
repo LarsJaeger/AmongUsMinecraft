@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import java.util.HashMap;
 
-public enum Color {
+public enum PlayerColor {
     RED, //("color_red", org.bukkit.Color.fromRGB(197, 17, 17)),
     BLUE, //("color_blue", org.bukkit.Color.fromRGB(19, 46, 209)),
     GREEN, //("color_green", org.bukkit.Color.fromRGB(17, 127,45)),
@@ -28,6 +28,8 @@ public enum Color {
     public void setPlayer(Player p) {
         if(this.colorPlayer == null) {
             setColoredArmor(p, this.getColor());
+            this.colorPlayer = p;
+            Main.send(p, "color_new", Main.getString(p, this.getName()));
         } else {
             Main.send(p,"color_alreadyTaken", Main.getString(p, this.getName()), this.colorPlayer.getName());
         }
@@ -119,9 +121,15 @@ public enum Color {
         boots.setItemMeta(bootsMeta);
         p.getEquipment().setBoots(boots);
     }
-    public static Color getColor(Player p) {
-        for (Color c: Color.values()) {
+    public static PlayerColor getPlayerColor(Player p) {
+        for (PlayerColor c: PlayerColor.values()) {
             if(c.getPlayer().equals(p)) return c;
+        }
+        return null;
+    }
+    public static PlayerColor getPlayerColor(String name) {
+        for (PlayerColor c: PlayerColor.values()) {
+            if(c.getName().equalsIgnoreCase(name)) return c;
         }
         return null;
     }

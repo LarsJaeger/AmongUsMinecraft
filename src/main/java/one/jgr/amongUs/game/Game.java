@@ -13,8 +13,8 @@ public class Game {
     public static Boolean gameStarted = false;
     public static void addPlayer(Player p) {
         if(!gameStarted) {
-            for(Color c: Color.values()) {
-                if(Color.getColor(p) == null) {
+            for(PlayerColor c: PlayerColor.values()) {
+                if(PlayerColor.getPlayerColor(p) == null) {
                     if (c.getPlayer() == null) {
                         c.setPlayer(p);
                         p.setGameMode(GameMode.ADVENTURE);
@@ -22,7 +22,7 @@ public class Game {
                     }
                 }
             }
-            if(Color.getColor(p) == null) {
+            if(PlayerColor.getPlayerColor(p) == null) {
                 setSpectator();
             }
         }

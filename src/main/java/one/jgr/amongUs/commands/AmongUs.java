@@ -1,5 +1,6 @@
 package one.jgr.amongUs.commands;
 
+import one.jgr.amongUs.game.PlayerColor;
 import one.jgr.amongUs.main.Main;
 import one.jgr.amongUs.tasks.Cables;
 import org.bukkit.Bukkit;
@@ -14,9 +15,13 @@ public class AmongUs implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String arg, String[] args) {
         if (sender instanceof Player) {
             p = (Player) sender;
-            new Cables(p);
         } else {
             p = null;
+        }
+        switch (args[0]) {
+            //TODO TabComplete
+            case "color":
+                PlayerColor.getPlayerColor(args[2]).setPlayer(p);
         }
         return true;
     }
