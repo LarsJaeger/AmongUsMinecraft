@@ -8,15 +8,22 @@ public abstract class Countdown {
     protected int dt; //time to pass between actions
     protected int seconds; // time
     protected int taskId;
+    protected boolean running = false;
     public Countdown(int t) {
         seconds = t;
         this.t = t;
     }
     protected void start() {
-            taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), this::countdown, 20, 20);
+            if(running == false) {
+                taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), this::countdown, 20, 20);
+                running = true;
+            }
     }
     protected void pause() {
-        Bukkit.getServer().getScheduler().cancelTask(taskId);
+        if(running = true) {
+            Bukkit.getServer().getScheduler().cancelTask(taskId);
+            running = false;
+        }
     }
     protected void set(int t) {
         this.t = t;
@@ -25,10 +32,17 @@ public abstract class Countdown {
         t = seconds;
     }
     protected void countdown() {
-        t--;
         onCountdown();
+        if(t == 0) {
+            pause();
+            reset();
+        }
+        t--;
     }
     public void onCountdown() {
         // executed every time
+    }
+    public int getT() {
+        return t;
     }
 }
