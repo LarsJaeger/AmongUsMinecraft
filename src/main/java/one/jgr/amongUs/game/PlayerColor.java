@@ -1,6 +1,7 @@
 package one.jgr.amongUs.game;
 
 import one.jgr.amongUs.main.Main;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -24,17 +25,30 @@ public enum PlayerColor {
 
     public void setPlayer(Player p) {
         if(this.colorPlayer == null) {
-            if(this.getPlayerColor(p) != null) {
-                this.getPlayerColor(p).setPlayer(null); // resets the previous color of player p so it is no longer taken
+            if(PlayerColor.getPlayerColor(p) != null) {
+                PlayerColor.getPlayerColor(p).unsetPlayer();
             }
             setColoredArmor(p, this.getColor());
             this.colorPlayer = p;
+            p.setGameMode(GameMode.ADVENTURE);
             Main.sendHotBar(p, this.getName());
             Main.send(p, "color_new", Main.getString(p, this.getName()));
 
         } else {
             Main.send(p,"color_alreadyTaken", Main.getString(p, this.getName()), this.colorPlayer.getName());
         }
+    }
+    public void unsetPlayer() {
+        colorPlayer = null; // resets the previous color of player p so it is no longer taken
+    }
+    public static boolean setPlayerRandom(Player p) {
+        for(PlayerColor pc : PlayerColor.values()) {
+            if (pc.getPlayer() == null) {
+                pc.setPlayer(p);
+                return true;
+            }
+        }
+        return false;
     }
     public Player getPlayer() {
         return colorPlayer;
@@ -98,6 +112,8 @@ public enum PlayerColor {
         return null;
     }
     private void setColoredArmor(Player p, org.bukkit.Color c) {
+        //TODO prevent player from taking off armor
+
         // helmet
         ItemStack helmet = new ItemStack(Material.LEATHER_HELMET, 1);
         LeatherArmorMeta helmetMeta = (LeatherArmorMeta)helmet.getItemMeta();
@@ -131,7 +147,7 @@ public enum PlayerColor {
     }
     public static PlayerColor getPlayerColor(String name) {
         for (PlayerColor c: PlayerColor.values()) {
-            if(c.getName().equalsIgnoreCase(name)) return c;
+            if(c.getName().contains(name)) return c;
         }
         return null;
     }
