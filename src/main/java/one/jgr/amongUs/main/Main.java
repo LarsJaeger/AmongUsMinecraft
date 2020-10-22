@@ -15,6 +15,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -166,14 +167,14 @@ public class Main extends JavaPlugin {
 		if (player_language.get(pe).equalsIgnoreCase("de")) {
 			// german Output
 			try {
-				languagePack.load(Main.class.getClassLoader().getResourceAsStream(langPack_de));
+				languagePack.load(new InputStreamReader(Main.class.getResourceAsStream("langPack_de"), "UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (player_language.get(pe).equalsIgnoreCase("en")) {
 			// english Output
 			try {
-				languagePack.load(Main.class.getClassLoader().getResourceAsStream(langPack_en));
+				languagePack.load(new InputStreamReader(Main.class.getResourceAsStream("langPack_en"), "UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -250,14 +251,14 @@ public class Main extends JavaPlugin {
 		if (player_language.get(player).equalsIgnoreCase("de")) {
 			// german Output
 			try {
-				languagePack.load(Main.class.getClassLoader().getResourceAsStream(langPack_de));
+				languagePack.load(new InputStreamReader(Main.class.getResourceAsStream("langPack_de"), "UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (player_language.get(player).equalsIgnoreCase("en")) {
 			// english Output
 			try {
-				languagePack.load(Main.class.getClassLoader().getResourceAsStream(langPack_en));
+				languagePack.load(new InputStreamReader(Main.class.getResourceAsStream("langPack_en"), "UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
