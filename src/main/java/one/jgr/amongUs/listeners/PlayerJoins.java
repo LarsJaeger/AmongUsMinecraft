@@ -13,17 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoins implements Listener {
-    static Material m_teleporter = Material.NETHER_STAR;
 
-    public static void createInventory(Player p) {
-        p.getInventory().clear();
-        p.getInventory().setItem(0, CustomItem.CHALLENGE.getItemStack(Main.getLanguage(p)));
-        p.getInventory().setItem(3, CustomItem.INVITE.getItemStack(Main.getLanguage(p)));
-        p.getInventory().setItem(5, CustomItem.STATS.getItemStack(Main.getLanguage(p)));
-        p.getInventory().setHeldItemSlot(4);
-    }
-
-
+        //p.getInventory().setItem(0, CustomItem.CHALLENGE.getItemStack(Main.getLanguage(p)));
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
