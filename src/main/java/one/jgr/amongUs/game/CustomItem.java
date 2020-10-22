@@ -2,6 +2,7 @@ package one.jgr.amongUs.game;
 
 import one.jgr.amongUs.main.Main;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -12,10 +13,11 @@ import java.util.ArrayList;
             INVITE,
             STATS;
 
-            public ItemStack getItemStack(String languageCode) {
+            public ItemStack getItemStack(Player p) {
+                String languageCode = Main.getLanguage(p);
                 switch (this) {
                     case SELECT_COLOR:
-                        return createItemStack(1, Material.GOLDEN_SWORD, Main.getString(languageCode, "item_challenge"), Main.getString(languageCode, "item_lore_challenge"));
+                        return createItemStack(1, PlayerColor.getPlayerColor(p).getMaterial(), Main.getString(languageCode, "item_challenge"), Main.getString(languageCode, "item_lore_challenge"));
                     case INVITE:
                         return createItemStack(1, Material.LEAD, Main.getString(languageCode, "item_invite"), Main.getString(languageCode, "item_lore_invite"));
                     case STATS:

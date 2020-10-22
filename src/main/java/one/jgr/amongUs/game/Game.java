@@ -4,6 +4,8 @@ import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import scala.concurrent.impl.FutureConvertersImpl;
 
 import java.util.ArrayList;
 
@@ -32,15 +34,17 @@ public class Game {
     public static void addPlayer(Player p) {
         if(!gameStarted) {
             if(PlayerColor.getPlayerColor(p) == null) {
-                if(PlayerColor.setPlayerRandom(p));
+                if(PlayerColor.setPlayerRandom(p)) {
+                    preGameInventory(p);
+                }
                 else {
                     setSpectator(p);
                 }
             }
-            if(Bukkit.getServer().getOnlinePlayers().size() >= minPlayers) {
+            if(PlayerColor.getPlayerNumber() >= minPlayers) {
                 startCountdown.start();
             }
-            if(Bukkit.getServer().getOnlinePlayers().size() >= maxPlayers && startCountdown.getT() > 3) {
+            if(PlayerColor.getPlayerNumber() >= maxPlayers && startCountdown.getT() > 3) {
                 startCountdown.set(3);
             }
         } else {
@@ -59,7 +63,7 @@ public class Game {
                     }
                 }
             }
-            if(Bukkit.getServer().getOnlinePlayers().size() - 1 < minPlayers) { // stops and resets start countdown if there are not enough players in the lobby
+            if(PlayerColor.getPlayerNumber() < minPlayers) { // stops and resets start countdown if there are not enough players in the lobby
                 startCountdown.stop();
                 startCountdown.reset();
             }
@@ -71,5 +75,9 @@ public class Game {
     public static void setSpectator(Player p) {
         p.getInventory().clear();
         p.setGameMode(GameMode.SPECTATOR);
+    }
+    public static void preGameInventory(Player p) {
+        // Inventory for non spectators before the game start
+        p.getInventory().setItem(1, CustomItem.SELECT_COLOR.getItemStack(p));
     }
 }

@@ -1,5 +1,6 @@
 package one.jgr.amongUs.listeners;
 
+import one.jgr.amongUs.game.PlayerColor;
 import one.jgr.amongUs.main.Main;
 import one.jgr.amongUs.game.CustomItem;
 import org.bukkit.entity.Player;
@@ -14,9 +15,10 @@ public class PlayerClicks implements Listener {
     public void onPlayerClick(PlayerInteractEvent event) {
         if(event.getItem() == null || event.getHand().equals(EquipmentSlot.OFF_HAND)) return;
         Player p = event.getPlayer();
-        if(event.getItem().equals(CustomItem.SELECT_COLOR.getItemStack(Main.getLanguage(p))));
-        else if(event.getItem().equals(CustomItem.INVITE.getItemStack(Main.getLanguage(p))));
-        else System.out.println("nichts");
+        if(event.getItem().equals(CustomItem.SELECT_COLOR.getItemStack(p))) {
+            PlayerColor.colorChangeGUI(p);
+        }
+        else if(event.getItem().equals(CustomItem.INVITE.getItemStack(p)));
         event.setCancelled(true);
     }
 }

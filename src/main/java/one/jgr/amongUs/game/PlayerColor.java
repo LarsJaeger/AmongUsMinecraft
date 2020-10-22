@@ -1,5 +1,7 @@
 package one.jgr.amongUs.game;
 
+import net.wargearworld.GUI_API.GUI.ChestGUI;
+import net.wargearworld.GUI_API.Items.DefaultItem;
 import one.jgr.amongUs.main.Main;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -111,6 +113,35 @@ public enum PlayerColor {
         }
         return null;
     }
+    public Material getMaterial() {
+        switch (this) {
+            case RED:
+                return Material.RED_STAINED_GLASS_PANE;
+            case BLUE:
+                return Material.BLUE_STAINED_GLASS_PANE;
+            case GREEN:
+                return Material.GREEN_STAINED_GLASS_PANE;
+            case PINK:
+                return Material.PINK_STAINED_GLASS_PANE;
+            case ORANGE:
+                return Material.ORANGE_STAINED_GLASS_PANE;
+            case YELLOW:
+                return Material.YELLOW_STAINED_GLASS_PANE;
+            case BLACK:
+                return Material.BLACK_STAINED_GLASS_PANE;
+            case WHITE:
+                return Material.WHITE_STAINED_GLASS_PANE;
+            case PURPLE:
+                return Material.PURPLE_STAINED_GLASS_PANE;
+            case BROWN:
+                return Material.BROWN_STAINED_GLASS_PANE;
+            case CYAN:
+                return Material.CYAN_STAINED_GLASS_PANE;
+            case LIME:
+                return Material.LIME_STAINED_GLASS_PANE;
+        }
+        return Material.GRAY_STAINED_GLASS_PANE;
+    }
     private void setColoredArmor(Player p, org.bukkit.Color c) {
         //TODO prevent player from taking off armor
 
@@ -157,5 +188,15 @@ public enum PlayerColor {
             if(c.getPlayer() != null) number ++;
         }
         return number;
+    }
+    public static void colorChangeGUI(Player p) {
+
+    }
+    private static ChestGUI colorChange(Player p) {
+        ChestGUI gui = new ChestGUI(12, Main.getString(p, "inv_colorSelection"));
+        for(PlayerColor pc : PlayerColor.values()) {
+            gui.addItem(new DefaultItem(pc.getMaterial(), Main.getString(p, pc.getName())));
+        }
+        return gui;
     }
 }
