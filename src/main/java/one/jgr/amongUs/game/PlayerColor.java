@@ -29,6 +29,7 @@ public enum PlayerColor {
             }
             setColoredArmor(p, this.getColor());
             this.colorPlayer = p;
+            Main.sendHotBar(p, this.getName());
             Main.send(p, "color_new", Main.getString(p, this.getName()));
 
         } else {
@@ -133,5 +134,12 @@ public enum PlayerColor {
             if(c.getName().equalsIgnoreCase(name)) return c;
         }
         return null;
+    }
+    public static int getPlayerNumber() {
+        int number = 0;
+        for (PlayerColor c: PlayerColor.values()) {
+            if(c.getPlayer() != null) number ++;
+        }
+        return number;
     }
 }
