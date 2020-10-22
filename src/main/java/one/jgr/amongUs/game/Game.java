@@ -23,11 +23,13 @@ public class Game {
                 }
             }
             if(PlayerColor.getPlayerColor(p) == null) {
-                setSpectator();
+                setSpectator(p);
             }
+
         }
     }
-    public static void setSpectator() {
-        //TODO
+    public static void setSpectator(Player p) {
+        p.getInventory().clear();
+        p.setGameMode(GameMode.SPECTATOR);
     }
 }
