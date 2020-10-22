@@ -10,17 +10,23 @@ public abstract class Countdown {
     protected int taskId;
     protected boolean running = false;
     public Countdown(int t) {
+        this.dt = 20; // by standard dt = 20 GameTicks = 1 second
+        seconds = t;
+        this.t = t;
+    }
+    public Countdown(int t, int dt) {
+        this.dt = dt;
         seconds = t;
         this.t = t;
     }
     protected void start() {
             if(running == false) {
-                taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), this::countdown, 20, 20);
+                taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), this::countdown, 0, dt);
                 running = true;
             }
     }
-    protected void pause() {
-        if(running = true) {
+    protected void stop() {
+        if(running == true) {
             Bukkit.getServer().getScheduler().cancelTask(taskId);
             running = false;
         }
@@ -34,7 +40,7 @@ public abstract class Countdown {
     protected void countdown() {
         onCountdown();
         if(t == 0) {
-            pause();
+            stop();
             reset();
         }
         t--;

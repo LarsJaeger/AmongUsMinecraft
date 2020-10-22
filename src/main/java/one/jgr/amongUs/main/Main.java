@@ -8,6 +8,7 @@ import one.jgr.amongUs.commands.AmongUsTabCompletion;
 import one.jgr.amongUs.game.Game;
 import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.listeners.PlayerJoins;
+import one.jgr.amongUs.listeners.PlayerQuits;
 import one.jgr.amongUs.listeners.TaskEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -107,6 +108,7 @@ public class Main extends JavaPlugin {
 		PluginManager pm = Bukkit.getPluginManager();
 
 		pm.registerEvents(new PlayerJoins(), this);
+		pm.registerEvents(new PlayerQuits(), this);
 		pm.registerEvents(new PlayerClicks(), this);
 		pm.registerEvents(new TaskEvents(), this);
 /*

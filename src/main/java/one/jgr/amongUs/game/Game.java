@@ -53,12 +53,14 @@ public class Game {
         PlayerColor.getPlayerColor(p).unsetPlayer();
         if(!gameStarted) {
             for (Player player : Bukkit.getServer().getOnlinePlayers()) { // checks for Players that are spectators so they get the color from the person who left
-                if (PlayerColor.getPlayerColor(player) == null) {
-                    PlayerColor.setPlayerRandom(player);
+                if(!player.equals(p)) {
+                    if (PlayerColor.getPlayerColor(player) == null) {
+                        PlayerColor.setPlayerRandom(player);
+                    }
                 }
             }
-            if(Bukkit.getServer().getOnlinePlayers().size() < minPlayers) { // resets start countdown if there are not enough players in the lobby
-                startCountdown.pause();
+            if(Bukkit.getServer().getOnlinePlayers().size() - 1 < minPlayers) { // stops and resets start countdown if there are not enough players in the lobby
+                startCountdown.stop();
                 startCountdown.reset();
             }
         }

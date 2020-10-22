@@ -14,7 +14,7 @@ public class PlayerClicks implements Listener {
     public void onPlayerClick(PlayerInteractEvent event) {
         if(event.getItem() == null || event.getHand().equals(EquipmentSlot.OFF_HAND)) return;
         Player p = event.getPlayer();
-        if(event.getItem().equals(CustomItem.CHALLENGE.getItemStack(Main.getLanguage(p))));
+        if(event.getItem().equals(CustomItem.SELECT_COLOR.getItemStack(Main.getLanguage(p))));
         else if(event.getItem().equals(CustomItem.INVITE.getItemStack(Main.getLanguage(p))));
         else System.out.println("nichts");
         event.setCancelled(true);
