@@ -4,27 +4,27 @@ import one.jgr.amongUs.main.Main;
 import org.bukkit.Bukkit;
 
 public abstract class Countdown {
-    private int t; //current time
-    private int dt; //time to pass between actions
-    private int seconds; // time
-    private int taskId;
+    protected int t; //current time
+    protected int dt; //time to pass between actions
+    protected int seconds; // time
+    protected int taskId;
     public Countdown(int t) {
         seconds = t;
         this.t = t;
     }
-    public void start() {
+    protected void start() {
             taskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getMain(), this::countdown, 20, 20);
     }
-    public void pause() {
+    protected void pause() {
         Bukkit.getServer().getScheduler().cancelTask(taskId);
     }
-    public void set(int t) {
+    protected void set(int t) {
         this.t = t;
     }
-    public void reset() {
+    protected void reset() {
         t = seconds;
     }
-    private void countdown() {
+    protected void countdown() {
         t--;
         onCountdown();
     }
