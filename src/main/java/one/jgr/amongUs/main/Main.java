@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.wargearworld.GUI_API.GUI_API;
 import one.jgr.amongUs.commands.AmongUs;
 import one.jgr.amongUs.commands.AmongUsTabCompletion;
+import one.jgr.amongUs.game.Game;
 import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.TaskEvents;
@@ -27,8 +28,8 @@ public class Main extends JavaPlugin {
 	public static boolean enabled = true;
 	public static String fallbackLanguageCode = "en";
 	// config send
-	public static final String langPack_de = "de_german.properties";
-	public static final String langPack_en = "en_english.properties";
+	public static final String langPack_de = "/de_german.properties";
+	public static final String langPack_en = "/en_english.properties";
 	public static String commandcolor = "§2";
 	public static String argumentcolor = "§a";
 	public static String textcolor = "§7";
@@ -42,21 +43,6 @@ public class Main extends JavaPlugin {
 	public static String user;
 	public static String passwd;
 	public FileConfiguration config = null;
-	//game config
-	public static int minPlayers; // minimum number of players to start a game
-	public static int maxPlayers; // maximum number of players to start a game
-	public static int impostors; // number of impostors
-	public static int emergencyMeetings; // number of emergency meetings per person
-	public static int emergencyCooldown; // cooldown time of the emergency meeting after start or meeting
-	public static int discussionTime; // time to discuss in meetings
-	public static int votingTime; // time to vote in meetings
-	public static int playerSpeed; // possible values: 0;1;2
-	public static int crewmateVision; // when lights are off
-	public static int impostorVision; // when lights are off
-	public static int killCooldown; // cooldown between kills
-	public static int commonTasks; // tasks that everyone has to fulfill
-	public static int shortTasks; // single step tasks
-	public static int longTasks; // multi step tasks
 
 	public static Main getMain() {
 		return plugin;
@@ -101,20 +87,20 @@ public class Main extends JavaPlugin {
 			db.newConnection();
 		}
 		// game
-		minPlayers = config.getInt("game.minPlayers");
-		maxPlayers = config.getInt("game.maxPlayers");
-		impostors = config.getInt("game.impostors");
-		emergencyMeetings = config.getInt("game.emergencyMeetings");
-		emergencyCooldown = config.getInt("game.emergencyCooldown");
-		discussionTime = config.getInt("game.discussionTime");
-		votingTime = config.getInt("game.votingTime");
-		playerSpeed = config.getInt("game.playerSpeed");
-		crewmateVision = config.getInt("game.crewmateVision");
-		impostorVision = config.getInt("game.impostorVision");
-		killCooldown = config.getInt("game.killCooldown");
-		commonTasks = config.getInt("game.commonTasks");
-		shortTasks = config.getInt("game.shortTasks");
-		longTasks = config.getInt("game.longTasks");
+		Game.minPlayers = config.getInt("game.minPlayers");
+		Game.maxPlayers = config.getInt("game.maxPlayers");
+		Game.impostors = config.getInt("game.impostors");
+		Game.emergencyMeetings = config.getInt("game.emergencyMeetings");
+		Game.emergencyCooldown = config.getInt("game.emergencyCooldown");
+		Game.discussionTime = config.getInt("game.discussionTime");
+		Game.votingTime = config.getInt("game.votingTime");
+		Game.playerSpeed = config.getInt("game.playerSpeed");
+		Game.crewmateVision = config.getInt("game.crewmateVision");
+		Game.impostorVision = config.getInt("game.impostorVision");
+		Game.killCooldown = config.getInt("game.killCooldown");
+		Game.commonTasks = config.getInt("game.commonTasks");
+		Game.shortTasks = config.getInt("game.shortTasks");
+		Game.longTasks = config.getInt("game.longTasks");
 	}
 
 	public void register_Listener() {
