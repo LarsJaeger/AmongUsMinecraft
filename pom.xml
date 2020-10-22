@@ -52,6 +52,12 @@
             <version>${version.gui-api}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>net.wargearworld</groupId>
+            <artifactId>StringGetter</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

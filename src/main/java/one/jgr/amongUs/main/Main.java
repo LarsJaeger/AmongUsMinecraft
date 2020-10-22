@@ -1,13 +1,13 @@
 package one.jgr.amongUs.main;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.wargearworld.GUI_API.GUI_API;
-import one.jgr.amongUs.game.PlayerColor;
-import one.jgr.amongUs.listeners.PlayerJoins;
-import one.jgr.amongUs.listeners.PlayerClicks;
 import one.jgr.amongUs.commands.AmongUs;
 import one.jgr.amongUs.commands.AmongUsTabCompletion;
+import one.jgr.amongUs.listeners.PlayerClicks;
+import one.jgr.amongUs.listeners.PlayerJoins;
 import one.jgr.amongUs.listeners.TaskEvents;
-import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -17,7 +17,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Properties;
 
 public class Main extends JavaPlugin {
 
@@ -67,7 +68,7 @@ public class Main extends JavaPlugin {
 		configure();
 		if (enabled) {
 			register_Listener();
-			// TODO fix new GUI_API(this, null);
+			new GUI_API(this, null);
 			if (dbenabled) {
 				new DataSource();
 			}
@@ -121,7 +122,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerJoins(), this);
 		pm.registerEvents(new PlayerClicks(), this);
 		pm.registerEvents(new TaskEvents(), this);
-/*		TODO
+/*
 		pm.registerEvents(new PlayerDeath(), this);
 		pm.registerEvents(new PlayerRespawn(), this);
 		pm.registerEvents(new PlayerJoins(), this);
@@ -291,5 +292,8 @@ public class Main extends JavaPlugin {
 		message = languagePack.getProperty(args);
 		message = message.replace("ï¿½", "");
 		return message;
+	}
+	public static void sendHotBar(Player p, String key) {
+		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(getString(p, key)));
 	}
 }
