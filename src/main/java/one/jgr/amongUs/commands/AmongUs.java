@@ -21,7 +21,11 @@ public class AmongUs implements CommandExecutor {
         switch (args[0]) {
             //TODO TabComplete
             case "color":
-                PlayerColor.getPlayerColor(args[1]).setPlayer(p);
+                if(PlayerColor.getPlayerColor(args[1]) != null) {
+                    PlayerColor.getPlayerColor(args[1]).setPlayer(p);
+                } else {
+                    Main.send(p, "color_notFound");
+                }
         }
         return true;
     }
