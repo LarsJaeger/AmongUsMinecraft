@@ -6,10 +6,7 @@ import net.wargearworld.GUI_API.GUI_API;
 import one.jgr.amongUs.commands.AmongUs;
 import one.jgr.amongUs.commands.AmongUsTabCompletion;
 import one.jgr.amongUs.game.Game;
-import one.jgr.amongUs.listeners.PlayerClicks;
-import one.jgr.amongUs.listeners.PlayerJoins;
-import one.jgr.amongUs.listeners.PlayerQuits;
-import one.jgr.amongUs.listeners.TaskEvents;
+import one.jgr.amongUs.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -111,6 +108,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerQuits(), this);
 		pm.registerEvents(new PlayerClicks(), this);
 		pm.registerEvents(new TaskEvents(), this);
+		pm.registerEvents(new EventsToBeCanceled(), this);
 /*
 		pm.registerEvents(new PlayerDeath(), this);
 		pm.registerEvents(new PlayerRespawn(), this);
@@ -120,7 +118,6 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new ClickInInventory(), this);
 		pm.registerEvents(new PlayerClicks(), this);
 		pm.registerEvents(new ProjectileHits(), this);
-		pm.registerEvents(new EventsToBeCanceled(), this);
 		pm.registerEvents(new FloorDamage(), this);
 		pm.registerEvents(new PlayerChat(), this);
 		pm.registerEvents(new WaterRemover(), this);*/
