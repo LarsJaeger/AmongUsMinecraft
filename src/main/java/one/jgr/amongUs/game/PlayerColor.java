@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
+import java.util.ArrayList;
+
 public enum PlayerColor {
     RED, //("color_red", org.bukkit.Color.fromRGB(197, 17, 17)),
     BLUE, //("color_blue", org.bukkit.Color.fromRGB(19, 46, 209)),
@@ -24,6 +26,7 @@ public enum PlayerColor {
     LIME; //("color_lime", org.bukkit.Color.fromRGB(80,239,57));
 
     private Player colorPlayer;
+    private Boolean isImpostor = false;
 
     public void setPlayer(Player p) {
         if(this.colorPlayer == null) {
@@ -201,5 +204,43 @@ public enum PlayerColor {
             positionCounter ++;
         }
         return gui;
+    }
+    public void setImpostor() {
+        isImpostor = true;
+    }
+    public boolean isImpostor() {
+        return isImpostor;
+    }
+    public static ArrayList<Player> getImpostors() {
+        ArrayList<Player> imp = new ArrayList<> ();
+        for (PlayerColor pc : PlayerColor.values()) {
+            if(pc.isImpostor()) {
+                imp.add(pc.getPlayer());
+            }
+        }
+        return imp;
+    }
+    public static String getImpostorNames() { // returns a list of all impostors' names seperated by ', '
+        String impostors = "§4";
+        for(Player imp : PlayerColor.getImpostors()) {
+            impostors = impostors + (imp.getName()) + ", ";
+        }
+        return impostors.substring(0, impostors.length() - 2);
+    }
+    public static ArrayList<Player> getCrewmates() {
+        ArrayList<Player> crew = new ArrayList<> ();
+        for (PlayerColor pc : PlayerColor.values()) {
+            if(!pc.isImpostor()) {
+                crew.add(pc.getPlayer());
+            }
+        }
+        return crew;
+    }
+    public static String getCrewmateNames() { // returns a list of all crewmates' names seperated by ', '
+        String crewmates = "§9";
+        for(Player imp : PlayerColor.getCrewmates()) {
+            crewmates = crewmates + (imp.getName()) + ", ";
+        }
+        return crewmates.substring(0, crewmates.length() - 2);
     }
 }

@@ -1,11 +1,13 @@
 package one.jgr.amongUs.game;
 
+import one.jgr.amongUs.main.Main;
 import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
@@ -47,6 +49,7 @@ public class Game {
                 startCountdown.set(3);
             }
         } else {
+            //TODO teleport Player
             p.setGameMode(GameMode.SPECTATOR);
         }
     }
@@ -78,5 +81,26 @@ public class Game {
     public static void preGameInventory(Player p) {
         // Inventory for non spectators before the game start
         p.getInventory().setItem(0, CustomItem.SELECT_COLOR.getItemStack(p));
+    }
+    public static void startGame() {
+        for(int i = 0; i < impostors; i++) { // sets impostors
+            int randomNum = ThreadLocalRandom.current().nextInt(0, PlayerColor.getPlayerNumber() + 1); // generates one random impostor
+            int counter = 0;
+            for (PlayerColor pc : PlayerColor.values()) {
+                if (counter == randomNum) {
+                    pc.setImpostor();
+                }
+                counter ++;
+            }
+        }
+        // displays title screen and tells players who is with them
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            if(PlayerColor.getPlayerColor(p) != null && PlayerColor.getPlayerColor(p).isImpostor()) {
+                p.sendTitle(Main.getString(p, "title_impostor"), PlayerColor.getImpostorNames(), 1, 2, 1);
+            } else {
+                p.sendTitle(Main.getString(p, "title_crewmate"), "", 1, 2, 1);
+            }
+        }
+        //TODO teleport players
     }
 }
