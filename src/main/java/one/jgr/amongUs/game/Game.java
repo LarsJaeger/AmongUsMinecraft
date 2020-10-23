@@ -4,8 +4,6 @@ import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import scala.concurrent.impl.FutureConvertersImpl;
 
 import java.util.ArrayList;
 
@@ -41,7 +39,8 @@ public class Game {
                     setSpectator(p);
                 }
             }
-            if(PlayerColor.getPlayerNumber() >= minPlayers) {
+            if(PlayerColor.getPlayerNumber()
+                    >= minPlayers) {
                 startCountdown.start();
             }
             if(PlayerColor.getPlayerNumber() >= maxPlayers && startCountdown.getT() > 3) {
@@ -78,6 +77,6 @@ public class Game {
     }
     public static void preGameInventory(Player p) {
         // Inventory for non spectators before the game start
-        p.getInventory().setItem(1, CustomItem.SELECT_COLOR.getItemStack(p));
+        p.getInventory().setItem(0, CustomItem.SELECT_COLOR.getItemStack(p));
     }
 }

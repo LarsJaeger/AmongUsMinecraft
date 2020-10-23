@@ -9,19 +9,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
         public enum CustomItem {
             //TODO overhaul
-            SELECT_COLOR,
-            INVITE,
-            STATS;
+            SELECT_COLOR;
 
             public ItemStack getItemStack(Player p) {
-                String languageCode = Main.getLanguage(p);
                 switch (this) {
                     case SELECT_COLOR:
-                        return createItemStack(1, PlayerColor.getPlayerColor(p).getMaterial(), Main.getString(languageCode, "item_challenge"), Main.getString(languageCode, "item_lore_challenge"));
-                    case INVITE:
-                        return createItemStack(1, Material.LEAD, Main.getString(languageCode, "item_invite"), Main.getString(languageCode, "item_lore_invite"));
-                    case STATS:
-                        return createItemStack(1, Material.MAP, Main.getString(languageCode, "item_stats"), Main.getString(languageCode, "item_lore_stats"));
+                        return createItemStack(1, PlayerColor.getPlayerColor(p).getMaterial(), Main.getString(p, PlayerColor.getPlayerColor(p).getNameKey()), Main.getString(p, "item_lore_selectColor"));
                 }
                 return null;
             }

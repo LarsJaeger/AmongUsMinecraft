@@ -18,7 +18,6 @@ public class PlayerClicks implements Listener {
         if(event.getItem().equals(CustomItem.SELECT_COLOR.getItemStack(p))) {
             PlayerColor.colorChangeGUI(p);
         }
-        else if(event.getItem().equals(CustomItem.INVITE.getItemStack(p)));
         event.setCancelled(true);
     }
 }

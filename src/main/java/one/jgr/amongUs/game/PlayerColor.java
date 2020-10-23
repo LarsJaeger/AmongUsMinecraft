@@ -33,11 +33,12 @@ public enum PlayerColor {
             setColoredArmor(p, this.getColor());
             this.colorPlayer = p;
             p.setGameMode(GameMode.ADVENTURE);
-            Main.sendHotBar(p, this.getName());
-            Main.send(p, "color_new", Main.getString(p, this.getName()));
+            Game.preGameInventory(p); // update Inventory
+            Main.sendHotBar(p, this.getNameKey()); // hot bar text
+            Main.send(p, "color_new", Main.getString(p, this.getNameKey()));  // chat message
 
         } else {
-            Main.send(p,"color_alreadyTaken", Main.getString(p, this.getName()), this.colorPlayer.getName());
+            Main.send(p,"color_alreadyTaken", Main.getString(p, this.getNameKey()), this.colorPlayer.getName());
         }
     }
     public void unsetPlayer() {
@@ -55,7 +56,7 @@ public enum PlayerColor {
     public Player getPlayer() {
         return colorPlayer;
     }
-    public String getName() {
+    public String getNameKey() {
         switch (this) {
             case RED:
                 return "color_red";
@@ -178,7 +179,7 @@ public enum PlayerColor {
     }
     public static PlayerColor getPlayerColor(String name) {
         for (PlayerColor c: PlayerColor.values()) {
-            if(c.getName().contains(name)) return c;
+            if(c.getNameKey().contains(name)) return c;
         }
         return null;
     }
@@ -190,12 +191,14 @@ public enum PlayerColor {
         return number;
     }
     public static void colorChangeGUI(Player p) {
-
+        colorChange(p).open(p);
     }
     private static ChestGUI colorChange(Player p) {
-        ChestGUI gui = new ChestGUI(12, Main.getString(p, "inv_colorSelection"));
+        ChestGUI gui = new ChestGUI(18, Main.getString(p, "inv_colorSelection"));
+        int positionCounter = 0;
         for(PlayerColor pc : PlayerColor.values()) {
-            gui.addItem(new DefaultItem(pc.getMaterial(), Main.getString(p, pc.getName())));
+            gui.setItem(positionCounter, new DefaultItem(pc.getMaterial(), Main.getString(p, pc.getNameKey())).setExecutor(s -> {pc.setPlayer(p);}));
+            positionCounter ++;
         }
         return gui;
     }

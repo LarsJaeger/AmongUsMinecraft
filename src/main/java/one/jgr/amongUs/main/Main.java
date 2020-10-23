@@ -264,14 +264,14 @@ public class Main extends JavaPlugin {
 		if (languageCode.equalsIgnoreCase("de")) {
 			// german Output
 			try {
-				languagePack.load(Main.class.getClassLoader().getResourceAsStream(langPack_de));
+				languagePack.load(new InputStreamReader(Main.class.getResourceAsStream(langPack_de), "UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else if (languageCode.equalsIgnoreCase("en")) {
 			// english Output
 			try {
-				languagePack.load(Main.class.getClassLoader().getResourceAsStream(langPack_en));
+				languagePack.load(new InputStreamReader(Main.class.getResourceAsStream(langPack_en), "UTF-8"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
