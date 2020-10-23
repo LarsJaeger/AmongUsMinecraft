@@ -15,11 +15,13 @@ public class StartCountdown extends Countdown{
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_IRON_XYLOPHONE, 13, 1);
             }
             Main.sendAll("game_startsNow", Integer.toString(super.t));
+            Game.startGame();
+            return;
         }
         if(t%10 == 0 || t<= 5) {
             Main.sendAll("game_startsIn", Integer.toString(super.t));
             for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 10, 1);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 15, 1);
             }
         }
     }

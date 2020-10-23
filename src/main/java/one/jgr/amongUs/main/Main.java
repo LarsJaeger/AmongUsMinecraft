@@ -173,7 +173,7 @@ public class Main extends JavaPlugin {
 		}
 		if (args.length != 1) {
 			for (int i = 1; i < args.length; i++) {
-				message = message.replaceFirst("%r", args[i]);
+				message = message.replaceFirst("%r", args[i] + textcolor);
 			}
 		}
 		message = message.replace("'/", commandcolor + "/").replace("'", textcolor + "");

@@ -5,6 +5,8 @@ import one.jgr.amongUs.tasks.Task;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -94,13 +96,16 @@ public class Game {
             }
         }
         // displays title screen and tells players who is with them
+        //TODO give player blindness effect
         for(Player p : Bukkit.getOnlinePlayers()) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 4*20, 200));
             if(PlayerColor.getPlayerColor(p) != null && PlayerColor.getPlayerColor(p).isImpostor()) {
-                p.sendTitle(Main.getString(p, "title_impostor"), PlayerColor.getImpostorNames(), 1, 2, 1);
+                p.sendTitle(Main.getString(p, "title_impostor"), PlayerColor.getImpostorNames(), 1*20, 2*20, 1*20);
             } else {
-                p.sendTitle(Main.getString(p, "title_crewmate"), "", 1, 2, 1);
+                p.sendTitle(Main.getString(p, "title_crewmate"), "", 1*20, 2*20, 1*20);
             }
         }
         //TODO teleport players
+        // assign inventories
     }
 }
