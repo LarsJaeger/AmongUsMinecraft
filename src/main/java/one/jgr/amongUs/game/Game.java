@@ -34,6 +34,7 @@ public class Game {
     public static Countdown startCountdown = new StartCountdown();
 
     public static void addPlayer(Player p) {
+        p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100000, 250)); // deactivates jumping
         if(!gameStarted) {
             if(PlayerColor.getPlayerColor(p) == null) {
                 if(PlayerColor.setPlayerRandom(p)) {
@@ -51,8 +52,8 @@ public class Game {
                 startCountdown.set(3);
             }
         } else {
+            setSpectator(p);
             //TODO teleport Player
-            p.setGameMode(GameMode.SPECTATOR);
         }
     }
     public static void removePlayer(Player p) {
@@ -78,7 +79,8 @@ public class Game {
     }
     public static void setSpectator(Player p) {
         p.getInventory().clear();
-        p.setGameMode(GameMode.SPECTATOR);
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1,1, false,false));
+        p.setGameMode(GameMode.ADVENTURE);
     }
     public static void preGameInventory(Player p) {
         // Inventory for non spectators before the game start
