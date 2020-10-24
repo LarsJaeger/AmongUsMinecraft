@@ -1,8 +1,13 @@
 package one.jgr.amongUs.game;
 
+import net.minecraft.server.v1_15_R1.BlockPosition;
 import one.jgr.amongUs.game.venting.Vent;
 import one.jgr.amongUs.game.venting.VentSystem;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.AnaloguePowerable;
+import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_15_R1.block.CraftBlock;
 
 import java.util.ArrayList;
 
@@ -15,7 +20,8 @@ public enum Map {
     private World w;
     private Location mapBorder1;
     private Location mapBorder2;
-    private Location lobbySpawn = w.getSpawnLocation();
+    private Location lobbySpawn;
+    private Location lights;
     private ArrayList<Location> gameSpawns = new ArrayList<>();
     private ArrayList<VentSystem> ventsystems;
 
@@ -34,15 +40,22 @@ public enum Map {
         for(int x = mapBorder1.getBlockX(); x <= mapBorder2.getBlockX(); x++) {
             for(int y = mapBorder1.getBlockY(); y <= mapBorder2.getBlockY(); y++) {
                 for(int z = mapBorder1.getBlockZ(); z <= mapBorder2.getBlockZ(); z++) {
+                    // initialising vents
                     if(w.getBlockAt(x,y,z).getType().equals(Material.IRON_TRAPDOOR) && w.getBlockAt(x,y-1,z).getType().equals(Material.COAL_BLOCK)) {
                         // if there is a trapdoor with a coalblock beneath, with a ventSystemBlock beneath
                         new Vent(new Location(w, x, y, z));
                     }
+                    // initialising lobby spawn
                     if(w.getBlockAt(x,y,z).getType().equals(Material.GOLD_BLOCK) && w.getBlockAt(x,y-1,z).getType().equals(Material.DIAMOND_BLOCK)) {
                         lobbySpawn = new Location(w, x, y+1, z);
                     }
+                    // initialising gamespawns
                     if(w.getBlockAt(x,y,z).getType().equals(Material.GOLD_BLOCK) && w.getBlockAt(x,y-1,z).getType().equals(Material.OBSIDIAN)) {
                         gameSpawns.add(new Location(w, x, y+1, z));
+                    }
+                    // initialising lights
+                    if(w.getBlockAt(x,y,z).getType().equals(Material.GOLD_BLOCK) && w.getBlockAt(x,y-1,z).getType().equals(Material.REDSTONE_BLOCK)) {
+                        lights = new Location(w, x, y+1, z);
                     }
                     // if needed add visual task locations, e. g. scanner
                 }
@@ -62,5 +75,18 @@ public enum Map {
         } else {
             return b;
         }
+    }
+    public void toggleLights(Boolean isOn) {
+        AnaloguePowerable lights_redstoneWire = (AnaloguePowerable) lights.getBlock().getBlockData();
+        if (isOn == true) {
+            lights_redstoneWire.setPower(15);
+        } else {
+            lights_redstoneWire.setPower(0);
+        }
+        applyPhysics(lights.getBlock());
+    }
+    private static void applyPhysics(Block block) {
+        ((CraftWorld) block.getWorld()).getHandle().applyPhysics(
+                new BlockPosition(block.getX(), block.getY(), block.getZ()), ((CraftBlock) block).getNMS().getBlock());
     }
 }
