@@ -11,6 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AmongUs" target="11" />
+      <module name="AmongUs (1)" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
