@@ -13,10 +13,11 @@ import org.bukkit.inventory.EquipmentSlot;
 public class PlayerClicks implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerClick(PlayerInteractEvent event) {
-        if(event.getItem() == null || event.getHand().equals(EquipmentSlot.OFF_HAND)) return;
-        Player p = event.getPlayer();
-        if(event.getItem().equals(CustomItem.SELECT_COLOR.getItemStack(p))) {
-            PlayerColor.colorChangeGUI(p);
+        if(!(event.getItem() == null || event.getHand().equals(EquipmentSlot.OFF_HAND))) {
+            Player p = event.getPlayer();
+            if (event.getItem().equals(CustomItem.SELECT_COLOR.getItemStack(p))) {
+                PlayerColor.colorChangeGUI(p);
+            }
         }
         event.setCancelled(true);
     }
