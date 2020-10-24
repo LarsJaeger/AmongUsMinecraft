@@ -1,5 +1,5 @@
 name: AmongUs
-version: 0.1
+version: 0.2
 main: one.jgr.amongUs.main.Main
 authors: [Lars Jaeger, JAB_1305]
 depend: [WorldEdit,WorldGuard]
